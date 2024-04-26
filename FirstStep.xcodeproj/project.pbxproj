@@ -17,7 +17,7 @@
 		9B2197732BD22C68005F6813 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2197722BD22C68005F6813 /* Color+Ext.swift */; };
 		9B4474152BD3164500918836 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4474142BD3164500918836 /* ImagePicker.swift */; };
 		9B4474172BD3898B00918836 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4474162BD3898B00918836 /* CardView.swift */; };
-		9BC135C92BD1B6E8006AABDD /* BubbleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC135C82BD1B6E8006AABDD /* BubbleBackgroundView.swift */; };
+		9BD9CDA52BDB175A002C09D4 /* EditHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9CDA42BDB175A002C09D4 /* EditHabit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +32,7 @@
 		9B2197722BD22C68005F6813 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		9B4474142BD3164500918836 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		9B4474162BD3898B00918836 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		9BC135C82BD1B6E8006AABDD /* BubbleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleBackgroundView.swift; sourceTree = "<group>"; };
+		9BD9CDA42BDB175A002C09D4 /* EditHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,6 @@
 		9B2197612BD1CA9F005F6813 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				9BC135C82BD1B6E8006AABDD /* BubbleBackgroundView.swift */,
 				9B4474162BD3898B00918836 /* CardView.swift */,
 			);
 			path = "Custom Views";
@@ -97,6 +96,7 @@
 			children = (
 				9B0AF0C52BD048E2009F893D /* ContentView.swift */,
 				9B2197702BD1DC59005F6813 /* NewHabitView.swift */,
+				9BD9CDA42BDB175A002C09D4 /* EditHabit.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -198,9 +198,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BD9CDA52BDB175A002C09D4 /* EditHabit.swift in Sources */,
 				9B21976D2BD1CFA8005F6813 /* UIView+Ext.swift in Sources */,
 				9B4474172BD3898B00918836 /* CardView.swift in Sources */,
-				9BC135C92BD1B6E8006AABDD /* BubbleBackgroundView.swift in Sources */,
 				9B2197712BD1DC59005F6813 /* NewHabitView.swift in Sources */,
 				9B4474152BD3164500918836 /* ImagePicker.swift in Sources */,
 				9B0AF0C62BD048E2009F893D /* ContentView.swift in Sources */,

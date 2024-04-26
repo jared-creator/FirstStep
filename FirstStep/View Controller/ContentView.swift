@@ -24,7 +24,11 @@ struct ContentView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 7) {
                     ForEach(habits) { habits in
-                        CardView(habit: habits)
+                        NavigationLink {
+                            EditHabit(habit: habits)
+                        } label: {
+                            CardView(habit: habits)
+                        }
                     }
                     .listRowSeparator(.hidden)
                 }

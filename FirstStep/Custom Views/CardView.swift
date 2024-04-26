@@ -22,8 +22,8 @@ struct CardView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 45)
                     .fill(color)
+                    .stroke(.gray, lineWidth: 0.5)
                     .frame(width: 187.5, height: 112.5)
-                    .shadow(color: .black, radius: 2)
                 
                 image?
                     .resizable()
@@ -32,7 +32,6 @@ struct CardView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 45))
             }
             .overlay(alignment: .bottomLeading) {
-                
                 if streak.day != 0 {
                     VStack {
                         Text("\(streak.day ?? 0)")
@@ -45,7 +44,6 @@ struct CardView: View {
                             .frame(width: 100)
                             .padding(.bottom, 20)
                     }
-                    
                 } else {
                     HStack(spacing: 30) {
                         VStack {
