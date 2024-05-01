@@ -107,11 +107,10 @@ struct EditHabit: View {
                             .foregroundStyle(.secondary)
                         
                         HStack(alignment: .top) {
-                            VStack {
+                            VStack(alignment: .leading) {
                                 Text("Need more motivation, add a photo")
                                     .font(.footnote)
                                     .foregroundStyle(.secondary)
-                                    .padding(.trailing, 120)
                                 
                                 Text("Optional")
                                     .font(.caption2)
