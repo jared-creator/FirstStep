@@ -17,6 +17,7 @@
 		9B2197732BD22C68005F6813 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2197722BD22C68005F6813 /* Color+Ext.swift */; };
 		9B4474152BD3164500918836 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4474142BD3164500918836 /* ImagePicker.swift */; };
 		9B4474172BD3898B00918836 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4474162BD3898B00918836 /* CardView.swift */; };
+		9B6D4BE62BE1CFC900CFAAC7 /* TextSize+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D4BE52BE1CFC900CFAAC7 /* TextSize+Ext.swift */; };
 		9BD9CDA52BDB175A002C09D4 /* EditHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9CDA42BDB175A002C09D4 /* EditHabit.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		9B2197722BD22C68005F6813 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		9B4474142BD3164500918836 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		9B4474162BD3898B00918836 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		9B6D4BE52BE1CFC900CFAAC7 /* TextSize+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextSize+Ext.swift"; sourceTree = "<group>"; };
 		9BD9CDA42BDB175A002C09D4 /* EditHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 			children = (
 				9B21976C2BD1CFA8005F6813 /* UIView+Ext.swift */,
 				9B2197722BD22C68005F6813 /* Color+Ext.swift */,
+				9B6D4BE52BE1CFC900CFAAC7 /* TextSize+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				9B4474172BD3898B00918836 /* CardView.swift in Sources */,
 				9B2197712BD1DC59005F6813 /* NewHabitView.swift in Sources */,
 				9B4474152BD3164500918836 /* ImagePicker.swift in Sources */,
+				9B6D4BE62BE1CFC900CFAAC7 /* TextSize+Ext.swift in Sources */,
 				9B0AF0C62BD048E2009F893D /* ContentView.swift in Sources */,
 				9B0AF0C42BD048E2009F893D /* FirstStepApp.swift in Sources */,
 				9B2197732BD22C68005F6813 /* Color+Ext.swift in Sources */,
@@ -346,8 +350,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,6 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jared-murray.FirstStep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -375,8 +380,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,6 +390,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jared-murray.FirstStep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

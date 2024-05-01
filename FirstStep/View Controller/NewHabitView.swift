@@ -24,6 +24,7 @@ struct NewHabitView: View {
     
     var body: some View {
         NavigationStack {
+            Spacer(minLength: 200)
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 45)
@@ -63,11 +64,13 @@ struct NewHabitView: View {
                     .foregroundStyle(.red)
                 }
                 
+                Spacer(minLength: 20)
+                
                 RoundedRectangle(cornerRadius: 15)
                     .fill(.thinMaterial)
                     .frame(width: 375, height: 190)
                     .overlay {
-                        VStack(spacing: 17) {
+                        VStack(alignment: .leading, spacing: 10) {
                             TextField("", text: $habitName, prompt: Text("e.g. No Sugar").foregroundStyle(.secondary))
                             HStack {
                                 Text("Start Date: ")
@@ -82,24 +85,24 @@ struct NewHabitView: View {
                             HStack(alignment: .top) {
                                 VStack(alignment: .leading) {
                                     Text("Need more motivation, add a photo")
-                                        .fixedSize()
                                         .font(.footnote)
                                         .foregroundStyle(.secondary)
+                                    
                                     Text("Optional")
-                                        .fixedSize()
                                         .font(.caption2)
                                         .foregroundStyle(.secondary.opacity(0.5))
                                 }
-                                .padding(.trailing, 120)
                                 
+                                Spacer()
                                 
                                 PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                                    Label("Add Image", systemImage: "photo")
+                                    Image(systemName: "photo")
                                 }
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        .padding(.top, 10)
-                        .padding(.leading, 15)
+                        .padding(.leading, 10)
+                        .padding(.trailing, 5)
                     }
             }
             .padding(.bottom, 250)
@@ -150,5 +153,13 @@ struct NewHabitView: View {
 }
 
 #Preview {
-    NewHabitView()
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Habits.self, configurations: config)
+        let example = Habits(name: "No Popcorn", startDate: .now, cardColor: "#FD3A69")
+        return NewHabitView()
+            .modelContainer(container)
+    } catch {
+        fatalError("Failed to create model container")
+    }
 }

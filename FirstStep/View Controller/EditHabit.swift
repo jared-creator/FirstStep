@@ -5,20 +5,22 @@
 //  Created by JaredMurray on 4/25/24.
 //
 
+import SwiftData
 import SwiftUI
 import PhotosUI
 
 struct EditHabit: View {
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    
     @State var habit: Habits
     @State private var image: Image?
-    @State private var habitName = ""
-    @State private var startDate: Date = .now
     @State private var showAlert = false
-    @State var color = Color.red
+    @State private var color = Color.red
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var streak: DateComponents = DateComponents()
     
     var body: some View {
+        Spacer(minLength: 200)
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 45)
@@ -84,12 +86,16 @@ struct EditHabit: View {
                 .foregroundStyle(.red)
             }
             
+            Spacer(minLength: 20)
+            
             RoundedRectangle(cornerRadius: 15)
                 .fill(.thinMaterial)
                 .frame(width: 375, height: 190)
                 .overlay {
-                    VStack(spacing: 17) {
-                        TextField("", text: $habit.name, prompt: Text("e.g. No Sugar").foregroundStyle(.secondary))
+                    VStack(alignment: .leading, spacing: 10) {
+                        TextField("", text: $habit.name, prompt: Text("e.g. No Sugar")
+                            .foregroundStyle(.secondary))
+                        
                         HStack {
                             Text("Start Date: ")
                                 .foregroundStyle(.secondary)
@@ -103,24 +109,24 @@ struct EditHabit: View {
                         HStack(alignment: .top) {
                             VStack(alignment: .leading) {
                                 Text("Need more motivation, add a photo")
-                                    .fixedSize()
                                     .font(.footnote)
                                     .foregroundStyle(.secondary)
+                                
                                 Text("Optional")
-                                    .fixedSize()
                                     .font(.caption2)
                                     .foregroundStyle(.secondary.opacity(0.5))
                             }
-                            .padding(.trailing, 120)
                             
+                            Spacer()
                             
                             PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                                Label("Add Image", systemImage: "photo")
+                                Image(systemName: "photo")
                             }
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(.top, 10)
-                    .padding(.leading, 15)
+                    .padding(.leading, 10)
+                    .padding(.trailing, 5)
                 }
         }
         .padding(.bottom, 250)
@@ -148,4 +154,16 @@ struct EditHabit: View {
         image = Image(uiImage: uiImage)
     }
     
+}
+
+#Preview {
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Habits.self, configurations: config)
+        let example = Habits(name: "No Popcorn", startDate: .now, cardColor: "#FD3A69")
+        return EditHabit(habit: example)
+            .modelContainer(container)
+    } catch {
+        fatalError("Failed to create model container")
+    }
 }
