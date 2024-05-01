@@ -5,9 +5,7 @@
 //  Created by JaredMurray on 4/30/24.
 //
 
-<<<<<<< HEAD
 import Foundation
-=======
 import SwiftUI
 
 extension ContentSizeCategory {
@@ -36,4 +34,3 @@ extension DynamicTypeSize {
         }
     }
 }
->>>>>>> FormLayout

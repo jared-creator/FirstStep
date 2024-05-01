@@ -116,7 +116,6 @@ struct EditHabit: View {
                                 Text("Optional")
                                     .font(.caption2)
                                     .foregroundStyle(.secondary.opacity(0.5))
-                                    .padding(.trailing, 290)
                             }
                             
                             Spacer()

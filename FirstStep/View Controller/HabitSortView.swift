@@ -6,17 +6,6 @@
 //
 
 import SwiftUI
-<<<<<<< HEAD
-
-struct HabitSortView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    HabitSortView()
-=======
 import SwiftData
 
 struct HabitSortView: View {
@@ -43,5 +32,4 @@ struct HabitSortView: View {
     init(sort: SortDescriptor<Habits>) {
         _habits = Query(sort: [sort])
     }
->>>>>>> FormLayout
 }
