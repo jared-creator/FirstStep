@@ -45,7 +45,7 @@ struct CardView: View {
                             .padding(.bottom, 20)
                     }
                 } else {
-                    HStack(spacing: 30) {
+                    HStack {
                         VStack {
                             Text("\(streak.hour ?? 0)")
                                 .font(.headline)

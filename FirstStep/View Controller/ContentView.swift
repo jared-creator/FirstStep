@@ -10,63 +10,56 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var habits: [Habits]
+    @State private var sortOrder = SortDescriptor(\Habits.startDate)
     
     @State private var showingDetail = false
-    
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 7) {
-                    ForEach(habits) { habits in
-                        NavigationLink {
-                            EditHabit(habit: habits)
-                        } label: {
-                            CardView(habit: habits)
+                HabitSortView(sort: sortOrder)
+                    .navigationTitle("Habits")
+                    .toolbar {
+                        Button("", systemImage: "plus") {
+                            showingDetail.toggle()
+                        }
+                        
+                        Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                            Picker("Sort", selection: $sortOrder) {
+                                Text("Name: A To Z")
+                                    .tag(SortDescriptor(\Habits.name, order: .forward))
+                                
+                                Text("Name: Z To A")
+                                    .tag(SortDescriptor(\Habits.name, order: .reverse))
+                                
+                                Text("Date: New To Old")
+                                    .tag(SortDescriptor(\Habits.startDate, order: .reverse))
+                                
+                                Text("Date: Old To New")
+                                    .tag(SortDescriptor(\Habits.startDate, order: .forward))
+                            }
+                            .pickerStyle(.inline)
                         }
                     }
-                    .listRowSeparator(.hidden)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("Habits")
-                            .font(.title)
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {
-                            showingDetail.toggle()
-                        }, label: {
-                            Image(systemName: "plus")
-                        })
-                    }
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button("Delete", action: deleteAll)
-                    }
-                }
-                .sheet(isPresented: $showingDetail, content: {
-                    NewHabitView()
-                })
+                    .sheet(isPresented: $showingDetail, content: {
+                        NewHabitView()
+                    })
             }
         }
     }
     
-    func deleteHabits(_ indexSet: IndexSet) {
-        for index in indexSet {
-            let habit = habits[index]
-            modelContext.delete(habit)
-        }
-    }
+//    func deleteHabits(_ indexSet: IndexSet) {
+//        for index in indexSet {
+//            let habit = habits[index]
+//            modelContext.delete(habit)
+//        }
+//    }
     
-    func deleteAll() {
-        for i in 0..<habits.count {
-            modelContext.delete(habits[i])
-        }
-    }
+//    func deleteAll() {
+//        for i in 0..<habits.count {
+//            modelContext.delete(habits[i])
+//        }
+//    }
 }
 
 #Preview {
