@@ -10,7 +10,6 @@ import SwiftUI
 struct CardView: View {
     var habit: Habits
     @State private var image: Image?
-    @State private var loadPhoto: Image?
     @State private var color = Color.red
     @State private var streak: DateComponents = DateComponents()
     
@@ -21,7 +20,7 @@ struct CardView: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 45)
-                    .fill(color)
+                    .fill(Color(hex: habit.cardColor)!)
                     .stroke(.gray, lineWidth: 0.5)
                     .frame(width: 187.5, height: 112.5)
                 
@@ -85,8 +84,11 @@ struct CardView: View {
         }
     }
     
-    func loadImage() {
-        guard habit.image != nil else { return }
+    func loadImage() {ad
+        guard habit.image != nil else {
+            image = nil
+            return
+        }
         let uiImage = UIImage(data: habit.image!)!
         image = Image(uiImage: uiImage)
     }

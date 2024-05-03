@@ -47,19 +47,6 @@ struct ContentView: View {
             }
         }
     }
-    
-//    func deleteHabits(_ indexSet: IndexSet) {
-//        for index in indexSet {
-//            let habit = habits[index]
-//            modelContext.delete(habit)
-//        }
-//    }
-    
-//    func deleteAll() {
-//        for i in 0..<habits.count {
-//            modelContext.delete(habits[i])
-//        }
-//    }
 }
 
 #Preview {

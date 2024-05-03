@@ -66,10 +66,7 @@ struct NewHabitView: View {
                 
                 Spacer(minLength: 20)
                 
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(.thinMaterial)
-                    .frame(width: 375, height: 190)
-                    .overlay {
+                    GroupBox {
                         VStack(alignment: .leading, spacing: 10) {
                             TextField("", text: $habitName, prompt: Text("e.g. No Sugar").foregroundStyle(.secondary))
                             HStack {
@@ -134,9 +131,9 @@ struct NewHabitView: View {
     }
     
     func loadImage() {
-        if let selectedPhoto, let uiImage = UIImage(data: habitImage!) {
-            image = Image(uiImage: uiImage)
-        }
+        guard let habitImage = habitImage else { return }
+        guard let uiImage = UIImage(data: habitImage) else { return }
+        image = Image(uiImage: uiImage)
     }
     
     func createHabit() {

@@ -11,6 +11,8 @@ import PhotosUI
 
 struct EditHabit: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @Environment(\.modelContext) var modelContext
+    @Environment(\.dismiss) var dismiss
     
     @State var habit: Habits
     @State private var image: Image?
@@ -88,46 +90,58 @@ struct EditHabit: View {
             
             Spacer(minLength: 20)
             
-            RoundedRectangle(cornerRadius: 15)
-                .fill(.thinMaterial)
-                .frame(width: 375, height: 190)
-                .overlay {
-                    VStack(alignment: .leading, spacing: 10) {
-                        TextField("", text: $habit.name, prompt: Text("e.g. No Sugar")
-                            .foregroundStyle(.secondary))
-                        
-                        HStack {
-                            Text("Start Date: ")
-                                .foregroundStyle(.secondary)
-                            
-                            DatePicker("", selection: $habit.startDate)
-                        }
-                        
-                        ColorPicker("Pick a Color", selection: $color)
+            GroupBox {
+                VStack(alignment: .leading, spacing: 10) {
+                    TextField("", text: $habit.name, prompt: Text("e.g. No Sugar")
+                        .foregroundStyle(.secondary))
+                    
+                    HStack {
+                        Text("Start Date: ")
                             .foregroundStyle(.secondary)
                         
-                        HStack(alignment: .top) {
-                            VStack(alignment: .leading) {
-                                Text("Need more motivation, add a photo")
-                                    .font(.footnote)
-                                    .foregroundStyle(.secondary)
-                                
-                                Text("Optional")
-                                    .font(.caption2)
-                                    .foregroundStyle(.secondary.opacity(0.5))
-                            }
-                            
-                            Spacer()
-                            
-                            PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                                Image(systemName: "photo")
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        DatePicker("", selection: $habit.startDate)
                     }
-                    .padding(.leading, 10)
-                    .padding(.trailing, 5)
+                    
+                    ColorPicker("Pick a Color", selection: $color)
+                        .foregroundStyle(.secondary)
+                    
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading) {
+                            Text("Need more motivation, add a photo")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                            
+                            Text("Optional")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary.opacity(0.5))
+                        }
+                        
+                        Spacer()
+                        
+                        PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                            Image(systemName: "photo")
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .padding(.leading, 10)
+                .padding(.trailing, 5)
+            }
+            
+            Spacer(minLength: 50)
+            
+            Button {
+                deleteHabit()
+                dismiss()
+                
+            } label: {
+                Text("Delete Habit")
+                    .frame(maxWidth: 250)
+            }
+            .tint(.red)
+            .controlSize(.extraLarge)
+            .buttonStyle(BorderedProminentButtonStyle())
+            .buttonBorderShape(.roundedRectangle(radius: 20))
         }
         .padding(.bottom, 250)
         .alert("Please enter a habit", isPresented: $showAlert) {
@@ -140,6 +154,7 @@ struct EditHabit: View {
         }
         .task(id: selectedPhoto) {
             if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+                habit.image = data
                 loadImage()
             }
         }
@@ -154,6 +169,9 @@ struct EditHabit: View {
         image = Image(uiImage: uiImage)
     }
     
+    func deleteHabit() {
+        modelContext.delete(habit)
+    }
 }
 
 #Preview {
