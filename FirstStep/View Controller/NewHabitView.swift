@@ -15,6 +15,7 @@ struct NewHabitView: View {
     
     @State var habitImage = Habits().image
     @State private var image: Image?
+    @State private var habitType: HabitType = .badHabit
     @State private var habitName = ""
     @State private var startDate: Date = .now
     @State private var showAlert = false
@@ -69,11 +70,23 @@ struct NewHabitView: View {
                     GroupBox {
                         VStack(alignment: .leading, spacing: 10) {
                             TextField("", text: $habitName, prompt: Text("e.g. No Sugar").foregroundStyle(.secondary))
+                                
+                                DatePicker("Start Date:", selection: $startDate)
+                                    .foregroundStyle(.secondary)
+                            
                             HStack {
-                                Text("Start Date: ")
+                                Text("Habit type:")
                                     .foregroundStyle(.secondary)
                                 
-                                DatePicker("", selection: $startDate)
+                                Spacer()
+                                
+                                Picker("Habit Type", selection: $habitType) {
+                                    ForEach(HabitType.allCases, id: \.self) { type in
+                                        Text(type.rawValue)
+                                    }
+                                }
+                                .pickerStyle(.segmented)
+                                .frame(maxWidth: 210)
                             }
                             
                             ColorPicker("Pick a Color", selection: $color)
@@ -99,7 +112,6 @@ struct NewHabitView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .padding(.leading, 10)
-                        .padding(.trailing, 5)
                     }
             }
             .padding(.bottom, 250)
@@ -139,11 +151,11 @@ struct NewHabitView: View {
     func createHabit() {
         if image != nil {
             let cardColor = color.hexString()
-            let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor, image: habitImage)
+            let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor, habitType: habitType, image: habitImage)
             modelContext.insert(newHabit)
         } else {
             let cardColor = color.hexString()
-            let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor)
+            let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor, habitType: habitType)
             modelContext.insert(newHabit)
         }
     }

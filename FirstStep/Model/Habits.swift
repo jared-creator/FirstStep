@@ -37,7 +37,10 @@ class Habits {
     
 }
 
-enum HabitType: Codable {
-    case goodHabit, badHabit
+enum HabitType: String, Codable, RawRepresentable, CaseIterable {
+    case goodHabit = "Good Habit"
+    case badHabit = "Bad Habit"
+    
+    
 }
 

@@ -84,7 +84,7 @@ struct CardView: View {
         }
     }
     
-    func loadImage() {ad
+    func loadImage() {
         guard habit.image != nil else {
             image = nil
             return
