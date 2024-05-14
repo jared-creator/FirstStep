@@ -16,7 +16,6 @@ struct EditHabit: View {
     
     @State var habit: Habits
     @State private var image: Image?
-    @State private var habitType: HabitType = .badHabit
     @State private var showAlert = false
     @State private var color = Color.red
     @State private var selectedPhoto: PhotosPickerItem?
@@ -99,21 +98,6 @@ struct EditHabit: View {
                     DatePicker("Start Date:", selection: $habit.startDate)
                         .foregroundStyle(.secondary)
                     
-                    HStack {
-                        Text("Habit type:")
-                            .foregroundStyle(.secondary)
-                        
-                        Spacer()
-                        
-                        Picker("Habit Type", selection: $habitType) {
-                            ForEach(HabitType.allCases, id: \.self) { type in
-                                Text(type.rawValue)
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                        .frame(maxWidth: 210)
-                    }
-                    
                     ColorPicker("Pick a Color", selection: $color)
                         .foregroundStyle(.secondary)
                     
@@ -160,9 +144,8 @@ struct EditHabit: View {
             Button("OK", role: .cancel) {}
         }
         .onAppear {
-            streak = habit.streakTime(habit: habit.startDate)
+            streak = streak.streakTime(habit: habit.startDate)
             color = Color(hex: habit.cardColor) ?? .red
-            habitType = habit.habitType
             loadImage()
         }
         .task(id: selectedPhoto) {
@@ -173,9 +156,6 @@ struct EditHabit: View {
         }
         .task(id: color) {
             habit.cardColor = color.hexString()
-        }
-        .task(id: habitType) {
-            habit.habitType = habitType
         }
     }
     

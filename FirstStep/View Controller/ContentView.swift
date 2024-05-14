@@ -16,34 +16,39 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                HabitSortView(sort: sortOrder)
-                    .navigationTitle("Habits")
-                    .toolbar {
-                        Button("", systemImage: "plus") {
-                            showingDetail.toggle()
-                        }
-                        
-                        Menu("Sort", systemImage: "arrow.up.arrow.down") {
-                            Picker("Sort", selection: $sortOrder) {
-                                Text("Name: A To Z")
-                                    .tag(SortDescriptor(\Habits.name, order: .forward))
-                                
-                                Text("Name: Z To A")
-                                    .tag(SortDescriptor(\Habits.name, order: .reverse))
-                                
-                                Text("Date: New To Old")
-                                    .tag(SortDescriptor(\Habits.startDate, order: .reverse))
-                                
-                                Text("Date: Old To New")
-                                    .tag(SortDescriptor(\Habits.startDate, order: .forward))
+            TabView {
+                ScrollView {
+                    HabitSortView(sort: sortOrder)
+                        .navigationTitle("Habits")
+                        .toolbar {
+                            Button("", systemImage: "plus") {
+                                showingDetail.toggle()
                             }
-                            .pickerStyle(.inline)
+                            
+                            Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                                Picker("Sort", selection: $sortOrder) {
+                                    Text("Name: A To Z")
+                                        .tag(SortDescriptor(\Habits.name, order: .forward))
+                                    
+                                    Text("Name: Z To A")
+                                        .tag(SortDescriptor(\Habits.name, order: .reverse))
+                                    
+                                    Text("Date: New To Old")
+                                        .tag(SortDescriptor(\Habits.startDate, order: .reverse))
+                                    
+                                    Text("Date: Old To New")
+                                        .tag(SortDescriptor(\Habits.startDate, order: .forward))
+                                }
+                                .pickerStyle(.inline)
+                            }
                         }
-                    }
-                    .sheet(isPresented: $showingDetail, content: {
-                        NewHabitView()
-                    })
+                        .sheet(isPresented: $showingDetail, content: {
+                            NewHabitView()
+                        })
+                }
+                .tabItem {
+                    Label("Bad Habits", systemImage: "tray.and.arrow.down.fill")
+                }
             }
         }
     }

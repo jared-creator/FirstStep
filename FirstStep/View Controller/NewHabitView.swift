@@ -15,7 +15,6 @@ struct NewHabitView: View {
     
     @State var habitImage = Habits().image
     @State private var image: Image?
-    @State private var habitType: HabitType = .badHabit
     @State private var habitName = ""
     @State private var startDate: Date = .now
     @State private var showAlert = false
@@ -73,21 +72,6 @@ struct NewHabitView: View {
                                 
                                 DatePicker("Start Date:", selection: $startDate)
                                     .foregroundStyle(.secondary)
-                            
-                            HStack {
-                                Text("Habit type:")
-                                    .foregroundStyle(.secondary)
-                                
-                                Spacer()
-                                
-                                Picker("Habit Type", selection: $habitType) {
-                                    ForEach(HabitType.allCases, id: \.self) { type in
-                                        Text(type.rawValue)
-                                    }
-                                }
-                                .pickerStyle(.segmented)
-                                .frame(maxWidth: 210)
-                            }
                             
                             ColorPicker("Pick a Color", selection: $color)
                                 .foregroundStyle(.secondary)
@@ -151,11 +135,11 @@ struct NewHabitView: View {
     func createHabit() {
         if image != nil {
             let cardColor = color.hexString()
-            let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor, habitType: habitType, image: habitImage)
+            let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor, image: habitImage)
             modelContext.insert(newHabit)
         } else {
             let cardColor = color.hexString()
-            let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor, habitType: habitType)
+            let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor)
             modelContext.insert(newHabit)
         }
     }

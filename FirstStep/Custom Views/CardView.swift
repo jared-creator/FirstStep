@@ -75,12 +75,12 @@ struct CardView: View {
             loadImage()
         }
         .onAppear {
-            streak = habits.streakTime(habit: habit.startDate)
+            streak = streak.streakTime(habit: habit.startDate)
             color = Color(hex: habit.cardColor) ?? .black
             
         }
         .onReceive(timer) { _ in
-            streak = habits.streakTime(habit: habit.startDate)
+            streak = streak.streakTime(habit: habit.startDate)
         }
     }
     
