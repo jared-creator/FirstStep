@@ -13,6 +13,7 @@
 		9B0AF0CB2BD048E3009F893D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0AF0CA2BD048E3009F893D /* Preview Assets.xcassets */; };
 		9B0AF0D22BD093BD009F893D /* Habits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0AF0D12BD093BD009F893D /* Habits.swift */; };
 		9B1068202BF41F3F000992B7 /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10681F2BF41F3F000992B7 /* Goals.swift */; };
+		9B1068282BF421CC000992B7 /* FirstStep_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1068272BF421CC000992B7 /* FirstStep_Tests.swift */; };
 		9B21976D2BD1CFA8005F6813 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B21976C2BD1CFA8005F6813 /* UIView+Ext.swift */; };
 		9B2197712BD1DC59005F6813 /* NewHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2197702BD1DC59005F6813 /* NewHabitView.swift */; };
 		9B2197732BD22C68005F6813 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2197722BD22C68005F6813 /* Color+Ext.swift */; };
@@ -23,6 +24,16 @@
 		9BD9CDA72BDC76BF002C09D4 /* HabitSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD9CDA62BDC76BF002C09D4 /* HabitSortView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9B1068292BF421CC000992B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B0AF0B82BD048E2009F893D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B0AF0BF2BD048E2009F893D;
+			remoteInfo = FirstStep;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		9B0AF0C02BD048E2009F893D /* FirstStep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstStep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0AF0C32BD048E2009F893D /* FirstStepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepApp.swift; sourceTree = "<group>"; };
@@ -31,6 +42,8 @@
 		9B0AF0CA2BD048E3009F893D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9B0AF0D12BD093BD009F893D /* Habits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habits.swift; sourceTree = "<group>"; };
 		9B10681F2BF41F3F000992B7 /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
+		9B1068252BF421CC000992B7 /* FirstStep_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirstStep_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B1068272BF421CC000992B7 /* FirstStep_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStep_Tests.swift; sourceTree = "<group>"; };
 		9B21976C2BD1CFA8005F6813 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		9B2197702BD1DC59005F6813 /* NewHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitView.swift; sourceTree = "<group>"; };
 		9B2197722BD22C68005F6813 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
@@ -49,6 +62,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9B1068222BF421CC000992B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -56,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				9B0AF0C22BD048E2009F893D /* FirstStep */,
+				9B1068262BF421CC000992B7 /* FirstStep_Tests */,
 				9B0AF0C12BD048E2009F893D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				9B0AF0C02BD048E2009F893D /* FirstStep.app */,
+				9B1068252BF421CC000992B7 /* FirstStep_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,6 +109,14 @@
 				9B0AF0CA2BD048E3009F893D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9B1068262BF421CC000992B7 /* FirstStep_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9B1068272BF421CC000992B7 /* FirstStep_Tests.swift */,
+			);
+			path = FirstStep_Tests;
 			sourceTree = "<group>";
 		};
 		9B2197612BD1CA9F005F6813 /* Custom Views */ = {
@@ -157,6 +187,24 @@
 			productReference = 9B0AF0C02BD048E2009F893D /* FirstStep.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9B1068242BF421CC000992B7 /* FirstStep_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B10682B2BF421CC000992B7 /* Build configuration list for PBXNativeTarget "FirstStep_Tests" */;
+			buildPhases = (
+				9B1068212BF421CC000992B7 /* Sources */,
+				9B1068222BF421CC000992B7 /* Frameworks */,
+				9B1068232BF421CC000992B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9B10682A2BF421CC000992B7 /* PBXTargetDependency */,
+			);
+			name = FirstStep_Tests;
+			productName = FirstStep_Tests;
+			productReference = 9B1068252BF421CC000992B7 /* FirstStep_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -169,6 +217,10 @@
 				TargetAttributes = {
 					9B0AF0BF2BD048E2009F893D = {
 						CreatedOnToolsVersion = 15.3;
+					};
+					9B1068242BF421CC000992B7 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 9B0AF0BF2BD048E2009F893D;
 					};
 				};
 			};
@@ -186,6 +238,7 @@
 			projectRoot = "";
 			targets = (
 				9B0AF0BF2BD048E2009F893D /* FirstStep */,
+				9B1068242BF421CC000992B7 /* FirstStep_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -197,6 +250,13 @@
 			files = (
 				9B0AF0CB2BD048E3009F893D /* Preview Assets.xcassets in Resources */,
 				9B0AF0C82BD048E3009F893D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B1068232BF421CC000992B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +282,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9B1068212BF421CC000992B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B1068282BF421CC000992B7 /* FirstStep_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9B10682A2BF421CC000992B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B0AF0BF2BD048E2009F893D /* FirstStep */;
+			targetProxy = 9B1068292BF421CC000992B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9B0AF0CC2BD048E3009F893D /* Debug */ = {
@@ -404,6 +480,42 @@
 			};
 			name = Release;
 		};
+		9B10682C2BF421CC000992B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q2MQTLB8FK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jared-murray.FirstStep-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FirstStep.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FirstStep";
+			};
+			name = Debug;
+		};
+		9B10682D2BF421CC000992B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q2MQTLB8FK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jared-murray.FirstStep-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FirstStep.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FirstStep";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -421,6 +533,15 @@
 			buildConfigurations = (
 				9B0AF0CF2BD048E3009F893D /* Debug */,
 				9B0AF0D02BD048E3009F893D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B10682B2BF421CC000992B7 /* Build configuration list for PBXNativeTarget "FirstStep_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B10682C2BF421CC000992B7 /* Debug */,
+				9B10682D2BF421CC000992B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
