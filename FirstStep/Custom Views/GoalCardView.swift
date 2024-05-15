@@ -1,26 +1,25 @@
 //
-//  CardView.swift
+//  GoalCardView.swift
 //  FirstStep
 //
-//  Created by JaredMurray on 4/19/24.
+//  Created by JaredMurray on 5/14/24.
 //
 
 import SwiftUI
 
-struct CardView: View {
-    var habit: Habits
+struct GoalCardView: View {
+    var goal: Goals
     @State private var image: Image?
     @State private var color = Color.red
     @State private var streak: DateComponents = DateComponents()
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let habits = Habits()
     
     var body: some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 45)
-                    .fill(Color(hex: habit.cardColor)!)
+                    .fill(Color(hex: goal.cardColor)!)
                     .stroke(.gray, lineWidth: 0.5)
                     .frame(width: 187.5, height: 112.5)
                 
@@ -69,27 +68,27 @@ struct CardView: View {
                     .padding(.leading, 30)
                 }
             }
-            Text(habit.name)
+            Text(goal.name)
         }
         .task {
             loadImage()
         }
         .onAppear {
-            streak = streak.streakTime(habit: habit.startDate)
-            color = Color(hex: habit.cardColor) ?? .black
+            streak = streak.streakTime(habit: goal.startDate)
+            color = Color(hex: goal.cardColor) ?? .black
             
         }
         .onReceive(timer) { _ in
-            streak = streak.streakTime(habit: habit.startDate)
+            streak = streak.streakTime(habit: goal.startDate)
         }
     }
     
     func loadImage() {
-        guard habit.image != nil else {
+        guard goal.image != nil else {
             image = nil
             return
         }
-        let uiImage = UIImage(data: habit.image!)!
+        let uiImage = UIImage(data: goal.image!)!
         image = Image(uiImage: uiImage)
     }
 }

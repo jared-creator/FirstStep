@@ -14,6 +14,6 @@ struct FirstStepApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Habits.self)
+        .modelContainer(for: [Habits.self, Goals.self])
     }
 }
