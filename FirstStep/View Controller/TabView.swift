@@ -27,13 +27,13 @@ struct TabBarView: View {
             TabView(selection: $tab) {
                 HabitSortView(sortHabit: habitSortOrder, tab: $tab)
                     .tabItem {
-                        Label("Habits", systemImage: "tray.and.arrow.down.fill")
+                        Label("Habits", systemImage: "takeoutbag.and.cup.and.straw.fill")
                     }
                     .tag(tabSelection.habits)
                 
                 HabitSortView(sortGoals: goalSortOrder, tab: $tab)
                     .tabItem {
-                        Label("Goals", systemImage: "house.fill")
+                        Label("Goals", systemImage: "flag.checkered.2.crossed")
                     }
                     .tag(tabSelection.goals)
                 

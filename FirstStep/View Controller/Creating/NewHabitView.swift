@@ -67,11 +67,14 @@ struct NewHabitView: View {
                 Spacer(minLength: 20)
                 
                     GroupBox {
-                        VStack(alignment: .leading, spacing: 10) {
-                            TextField("", text: $habitName, prompt: Text("e.g. No Sugar").foregroundStyle(.secondary))
-                                
-                                DatePicker("Start Date:", selection: $startDate)
-                                    .foregroundStyle(.secondary)
+                        VStack(alignment: .leading, spacing: 15) {
+                            VStack(spacing: 4) {
+                                TextField("", text: $habitName, prompt: Text("e.g. No Sugar").foregroundStyle(.secondary))
+                                Divider()
+                            }
+                            
+                            DatePicker("Start Date:", selection: $startDate)
+                                .foregroundStyle(.secondary)
                             
                             ColorPicker("Pick a Color", selection: $color)
                                 .foregroundStyle(.secondary)
@@ -94,6 +97,9 @@ struct NewHabitView: View {
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            
+//                            ColorPicker("Text", selection: $color)
+//                                .foregroundStyle(.secondary)
                         }
                         .padding(.leading, 10)
                     }
