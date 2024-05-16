@@ -17,8 +17,13 @@ struct NewHabitView: View {
     @State private var image: Image?
     @State private var habitName = ""
     @State private var startDate: Date = .now
+    
     @State private var showAlert = false
-    @State var color = Color.red
+    
+    @State var cardColor = Color.red
+    @State private var textColor: Color = .white
+    @State private var textColorShouldAdaptCardColor: Bool = true
+    @State private var taskCount = 0
     
     @State private var selectedPhoto: PhotosPickerItem?
     
@@ -28,7 +33,7 @@ struct NewHabitView: View {
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 45)
-                        .fill(color)
+                        .fill(cardColor)
                         .frame(width: 375, height: 225)
                     
                     image?
@@ -42,11 +47,11 @@ struct NewHabitView: View {
                     VStack {
                         Text("0")
                             .font(.headline)
-                            .foregroundStyle(color.adaptedTextColor())
+                            .foregroundStyle(textColorShouldAdaptCardColor ? cardColor.adaptedTextColor() : textColor)
                         
                         Text("Days")
                             .font(.subheadline)
-                            .foregroundStyle(color.adaptedTextColor())
+                            .foregroundStyle(textColorShouldAdaptCardColor ? cardColor.adaptedTextColor() : textColor)
                             .frame(width: 100)
                             .padding(.bottom, 20)
                     }
@@ -76,7 +81,7 @@ struct NewHabitView: View {
                             DatePicker("Start Date:", selection: $startDate)
                                 .foregroundStyle(.secondary)
                             
-                            ColorPicker("Pick a Color", selection: $color)
+                            ColorPicker("Pick a Color", selection: $cardColor)
                                 .foregroundStyle(.secondary)
                             
                             HStack(alignment: .top) {
@@ -98,8 +103,8 @@ struct NewHabitView: View {
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             
-//                            ColorPicker("Text", selection: $color)
-//                                .foregroundStyle(.secondary)
+                            ColorPicker("Pick a Text Color", selection: $textColor)
+                                .foregroundStyle(.secondary)
                         }
                         .padding(.leading, 10)
                     }
@@ -123,6 +128,17 @@ struct NewHabitView: View {
             .alert("Please enter a habit", isPresented: $showAlert) {
                 Button("OK", role: .cancel) {}
             }
+            .task(id: textColor) {
+                guard taskCount == 1 else {
+                    taskCount += 1
+                    return
+                }
+                textColorShouldAdaptCardColor = false
+            }
+            .task(id: cardColor) {
+                guard taskCount == 1 else { return }
+                textColorShouldAdaptCardColor = true
+            }
             .task(id: selectedPhoto) {
                 if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
                     habitImage = data
@@ -140,11 +156,11 @@ struct NewHabitView: View {
     
     func createHabit() {
         if image != nil {
-            let cardColor = color.hexString()
+            let cardColor = cardColor.hexString()
             let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor, image: habitImage)
             modelContext.insert(newHabit)
         } else {
-            let cardColor = color.hexString()
+            let cardColor = cardColor.hexString()
             let newHabit = Habits(name: habitName, startDate: startDate, cardColor: cardColor)
             modelContext.insert(newHabit)
         }
