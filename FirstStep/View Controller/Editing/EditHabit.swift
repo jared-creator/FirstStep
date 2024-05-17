@@ -17,8 +17,14 @@ struct EditHabit: View {
     @State var habit: Habits
     @State private var image: Image?
     @State private var showAlert = false
-    @State private var color = Color.red
+    
+    @State private var cardColor = Color.red
+    @State private var textColor: Color = .white
+    @State private var textColorShouldAdaptCardColor: Bool = true
+    @State private var taskCount = 0
+    
     @State private var selectedPhoto: PhotosPickerItem?
+    
     @State private var streak: DateComponents = DateComponents()
     
     var body: some View {
@@ -41,11 +47,11 @@ struct EditHabit: View {
                     VStack {
                         Text("\(streak.day ?? 0)")
                             .font(.headline)
-                            .foregroundStyle(color.adaptedTextColor())
+                            .foregroundStyle(textColorShouldAdaptCardColor ? cardColor.adaptedTextColor() : textColor)
                         
                         Text("Day(s)")
                             .font(.subheadline)
-                            .foregroundStyle(color.adaptedTextColor())
+                            .foregroundStyle(textColorShouldAdaptCardColor ? cardColor.adaptedTextColor() : textColor)
                             .frame(width: 100)
                             .padding(.bottom, 20)
                     }
@@ -54,21 +60,21 @@ struct EditHabit: View {
                         VStack {
                             Text("\(streak.hour ?? 0)")
                                 .font(.headline)
-                                .foregroundStyle(color.adaptedTextColor())
+                                .foregroundStyle(textColorShouldAdaptCardColor ? cardColor.adaptedTextColor() : textColor)
                             
                             Text("Hour(s)")
                                 .font(.subheadline)
-                                .foregroundStyle(color.adaptedTextColor())
+                                .foregroundStyle(textColorShouldAdaptCardColor ? cardColor.adaptedTextColor() : textColor)
                                 .padding(.bottom, 20)
                         }
                         VStack {
                             Text("\(streak.minute ?? 0)")
                                 .font(.headline)
-                                .foregroundStyle(color.adaptedTextColor())
+                                .foregroundStyle(textColorShouldAdaptCardColor ? cardColor.adaptedTextColor() : textColor)
                             
                             Text("Minute(s)")
                                 .font(.subheadline)
-                                .foregroundStyle(color.adaptedTextColor())
+                                .foregroundStyle(textColorShouldAdaptCardColor ? cardColor.adaptedTextColor() : textColor)
                                 .padding(.bottom, 20)
                         }
                     }
@@ -91,14 +97,16 @@ struct EditHabit: View {
             Spacer(minLength: 20)
             
             GroupBox {
-                VStack(alignment: .leading, spacing: 10) {
-                    TextField("", text: $habit.name, prompt: Text("e.g. No Sugar")
-                        .foregroundStyle(.secondary))
+                VStack(alignment: .leading, spacing: 15) {
+                    VStack(spacing: 4) {
+                        TextField("", text: $habit.name, prompt: Text("e.g. No Sugar").foregroundStyle(.secondary))
+                        Divider()
+                    }
                     
                     DatePicker("Start Date:", selection: $habit.startDate)
                         .foregroundStyle(.secondary)
                     
-                    ColorPicker("Pick a Color", selection: $color)
+                    ColorPicker("Pick a Color", selection: $cardColor)
                         .foregroundStyle(.secondary)
                     
                     HStack(alignment: .top) {
@@ -119,6 +127,9 @@ struct EditHabit: View {
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    ColorPicker("Pick a Text Color", selection: $textColor)
+                        .foregroundStyle(.secondary)
                 }
                 .padding(.leading, 10)
                 .padding(.trailing, 5)
@@ -145,7 +156,7 @@ struct EditHabit: View {
         }
         .onAppear {
             streak = streak.streakTime(habit: habit.startDate)
-            color = Color(hex: habit.cardColor) ?? .red
+            cardColor = Color(hex: habit.cardColor) ?? .red
             loadImage()
         }
         .task(id: selectedPhoto) {
@@ -154,8 +165,17 @@ struct EditHabit: View {
                 loadImage()
             }
         }
-        .task(id: color) {
-            habit.cardColor = color.hexString()
+        .task(id: textColor) {
+            guard taskCount == 1 else {
+                taskCount += 1
+                return
+            }
+            textColorShouldAdaptCardColor = false
+        }
+        .task(id: cardColor) {
+            habit.cardColor = cardColor.hexString()
+            guard taskCount == 1 else { return }
+            textColorShouldAdaptCardColor = true
         }
     }
     
